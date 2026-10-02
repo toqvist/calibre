@@ -1,21 +1,23 @@
 services:
   anx-calibre-manager:
-    image: ghcr.io/ptbsare/anx-calibre-manager:latest
+    image: ghcr.io/ptbsare/anx-calibre-manager:aio-latest
     volumes:
       - config:/config
       - webdav:/webdav
+      - library:/Calibre Library
     environment:
       PUID: 1000
       PGID: 1000
       TZ: America/New_York
       GUNICORN_WORKERS: 2
-      SECRET_KEY: ${SERVICE_REALBASE64_64_CALIBRE}
-      CALIBRE_URL: ${CALIBRE_URL:?}
-      CALIBRE_USERNAME: ${CALIBRE_USERNAME:?}
-      CALIBRE_PASSWORD: ${CALIBRE_PASSWORD:?}
+      SECRET_KEY: ${SERVICE_PASSWORD_64_SECRET}
+      CALIBRE_URL: http://localhost:8080
+      CALIBRE_USERNAME: ${SERVICE_USER_CALIBRE}
+      CALIBRE_PASSWORD: ${SERVICE_PASSWORD_CALIBRE}
       CALIBRE_DEFAULT_LIBRARY_ID: Calibre_Library
       CALIBRE_ADD_DUPLICATES: false
 
 volumes:
   config:
   webdav:
+  library:
