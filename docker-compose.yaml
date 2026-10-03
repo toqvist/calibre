@@ -4,7 +4,8 @@ services:
     volumes:
       - config:/config
       - webdav:/webdav
-      - library:/Calibre Library
+      - "/mnt/HC_Volume_103767111/nextcloud_data/_data/tobias/files/Calibre:Calibre Library"
+
     environment:
       PUID: 1000
       PGID: 1000
